@@ -17,17 +17,19 @@ Requisitos:
         PRIMARY KEY (`id`),
         UNIQUE KEY `sequence_dna_idx` (`dna`)
         ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1
-
-Para ejecutar ir a src/magneto y ejecutar el comando
-    
-    go run api.go isMutant.go sequence.go stat.go
-    
- 
+        
 Dependencias:
 
     go get github.com/gorilla/mux
 
     go get github.com/go-sql-driver/mysql
+
+Para ejecutar ir a src/magneto y ejecutar cualquiera de los siguientes comandos
+    
+    go run api.go isMutant.go sequence.go stat.go
+    
+    go build y luego ./mangeto
+    
 
 Accesso a la api (En GCP): 
 
