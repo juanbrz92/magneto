@@ -6,7 +6,7 @@ Requisitos:
     Tener un servicio de base de datos mysql en el puerto 3306
     Crear una base de datos:
     
-        CREATE DATABASE `magneto` /*!40100 DEFAULT CHARACTER SET latin1 */
+        CREATE DATABASE `magneto`
     
     Crear la tabla donde se alamacenaran los datos:
     
