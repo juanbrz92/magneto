@@ -12,7 +12,7 @@ Accesso a la api:
 
 Para agregar secuencias de adn:
 
-  http://35.198.62.59:23450/api/mutant
+     http://35.198.62.59:23450/api/mutant
   
       Basic Auth:
         Username: meli
