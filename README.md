@@ -1,5 +1,23 @@
 # magneto
 
+Requisitos:
+
+    Tener instalado go, ver en: https://golang.org/doc/install
+    Tener un servicio de base de datos mysql en el puerto 3306
+    Crear una base de datos:
+    
+        CREATE DATABASE `magneto` /*!40100 DEFAULT CHARACTER SET latin1 */
+    
+    Crear la tabla donde se alamacenaran los datos:
+    
+        CREATE TABLE `sequence` (
+        `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+        `dna` varchar(500) NOT NULL,
+        `result` varchar(45) DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `sequence_dna_idx` (`dna`)
+        ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1
+
 Para ejecutar ir a src/magneto y ejecutar el comando
     
     go run api.go isMutant.go sequence.go stat.go
