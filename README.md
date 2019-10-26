@@ -29,7 +29,7 @@ Dependencias:
 
     go get github.com/go-sql-driver/mysql
 
-Accesso a la api: 
+Accesso a la api (En GCP): 
 
 
 Para agregar secuencias de adn:
