@@ -1,7 +1,14 @@
 package main
 
-func isMutant(dna []string) bool {
+import "errors"
+
+func isMutant(dna []string) (bool, error) {
 	N := len(dna)
+	for x := 0; x < N; x++ {
+		if len(dna[x]) != N {
+			return false, errors.New("Secuencia no váida")
+		}
+	}
 	count := 0
 	positions := [2][4]int{}
 	direction := ""
@@ -26,7 +33,7 @@ func isMutant(dna []string) bool {
 					positions[count][3] = j + 3
 					count++
 					if count > 1 {
-						return true
+						return true, nil
 					}
 				}
 			}
@@ -55,7 +62,7 @@ func isMutant(dna []string) bool {
 					positions[count][3] = j + 3
 					count++
 					if count > 1 {
-						return true
+						return true, nil
 					}
 				}
 			}
@@ -78,7 +85,7 @@ func isMutant(dna []string) bool {
 					positions[count][3] = j
 					count++
 					if count > 1 {
-						return true
+						return true, nil
 					}
 				}
 			}
@@ -107,7 +114,7 @@ func isMutant(dna []string) bool {
 					positions[count][3] = j
 					count++
 					if count > 1 {
-						return true
+						return true, nil
 					}
 				}
 			}
@@ -132,7 +139,7 @@ func isMutant(dna []string) bool {
 					positions[count][3] = j
 					count++
 					if count > 1 {
-						return true
+						return true, nil
 					}
 				}
 			}
@@ -157,11 +164,11 @@ func isMutant(dna []string) bool {
 					positions[count][3] = j + 3
 					count++
 					if count > 1 {
-						return true
+						return true, nil
 					}
 				}
 			}
 		}
 	}
-	return false
+	return false, nil
 }

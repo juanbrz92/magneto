@@ -28,33 +28,51 @@ func checkMutant(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
 	defer db.Close()
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "Could not connect to the database")
+		respondWithError(w, http.StatusInternalServerError, "No se pudo conectar con la base de datos")
 		return
 	}
 	decoder := json.NewDecoder(r.Body)
 	var sequence sequence
 	err = decoder.Decode(&sequence)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "Some problem occurred.")
+		respondWithError(w, http.StatusInternalServerError, "Ocurrió un problema al decodificar la secuencia.")
 		return
 	}
-	statement, err := db.Prepare("insert into sequence (dna, result) values(?,?)")
+
+	data, err := json.Marshal(sequence.DNA)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "Some problem occurred.")
+		respondWithError(w, http.StatusInternalServerError, "Ocurrió un problema al decodificar la secuencia.")
+		return
+	}
+	var id int
+	var result bool
+	db.QueryRow("SELECT id,result FROM sequence where dna = ?;", data).Scan(&id, &result)
+	if id > 0 {
+		sequence.ID = int(id)
+		if result {
+			sequence.RESULT = "Es mutante"
+			respondWithJSON(w, http.StatusOK, sequence)
+		} else {
+			sequence.RESULT = "No es mutante"
+			respondWithJSON(w, http.StatusForbidden, sequence)
+		}
+		return
+	}
+	statement, err := db.Prepare("insert into sequence (dna, result) values(?,?);")
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "Ocurrio un problema en el servidor.")
 		return
 	}
 	defer statement.Close()
 
-	resultTest := isMutant(sequence.DNA[:])
-
-	data, err := json.Marshal(sequence.DNA)
-	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "Some problem occurred.")
+	resultTest, error := isMutant(sequence.DNA[:])
+	if error != nil {
+		respondWithError(w, http.StatusInternalServerError, "Secuencia no válida.")
 		return
 	}
 	res, err := statement.Exec(data, resultTest)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "There was problem entering the sequence.")
+		respondWithError(w, http.StatusInternalServerError, "Ocurrio un problema en al ingresar la secuencia.")
 		return
 	}
 	if rowsAffected, _ := res.RowsAffected(); rowsAffected == 1 {
@@ -74,7 +92,7 @@ func getStats(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
 	defer db.Close()
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "Could not connect to the database")
+		respondWithError(w, http.StatusInternalServerError, "No se pudo conectar con la base de datos.")
 		return
 	}
 	var countMutantDna sql.NullInt32
@@ -88,7 +106,7 @@ func getStats(w http.ResponseWriter, r *http.Request) {
 		FROM sequence s`
 	err = db.QueryRow(query).Scan(&countMutantDna, &countHumanDna, &ratio)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "Something went wrong.")
+		respondWithError(w, http.StatusInternalServerError, "Ocurrio un problema al obtener los datos.")
 		return
 	}
 	var stats stat
