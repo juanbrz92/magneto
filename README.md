@@ -34,7 +34,7 @@ Para ejecutar ir a src/magneto y ejecutar cualquiera de los siguientes comandos
 Accesso a la api (En GCP): 
 
 
-Para agregar secuencias de adn:
+Para agregar/checkear secuencias de adn:
 
      http://35.198.62.59:23450/api/mutant
   
