@@ -1,6 +1,10 @@
 # magneto
 
-
+Para ejecutar ir a src/magneto y ejecutar el comando
+    
+    go run api.go isMutant.go sequence.go stat.go
+    
+ 
 Dependencias:
 
     go get github.com/gorilla/mux
