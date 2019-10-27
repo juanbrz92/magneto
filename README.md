@@ -30,6 +30,10 @@ Para ejecutar ir a src/magneto y ejecutar cualquiera de los siguientes comandos
     
     go build y luego ./mangeto
     
+Para realizar test ir a src/magneto
+
+    go test -v -cover
+    
 
 Accesso a la api (En GCP): 
 
