@@ -75,3 +75,5 @@ Para consultar los registros actuales:  http://35.198.62.59:23450/api/stats
                 -H 'Authorization: Basic bWVsaToxMjM0' \
                 -H 'Postman-Token: f87360b3-96a5-4b56-bcd8-738cd5d9530e' \
                 -H 'cache-control: no-cache'
+                
+Tambien se adjunto un archivo json, con la collection de Postman
