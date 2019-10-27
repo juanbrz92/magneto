@@ -53,13 +53,13 @@ Para agregar/checkear secuencias de adn:  http://35.198.62.59:23450/api/mutant
                   --header 'Authorization: Basic bWVsaToxMjM0' \
                   --header 'Cache-Control: no-cache' \
                   --header 'Connection: keep-alive' \
-                  --header 'Content-Length: 100' \
+                  --header 'Content-Length: 97' \
                   --header 'Content-Type: application/json' \
                   --header 'Host: 35.198.62.59:23450' \
-                  --header 'Postman-Token: 8a43c7d2-dbb7-45ef-b438-0453df138d79,59ea29e3-1c48-428d-9071-f2dc7bdefaf6' \
+                  --header 'Postman-Token: 02fd5ea9-a9b4-4b5a-abd6-eb8b1003efa1,54e29b28-014e-489a-9071-4ea81f5de222' \
                   --header 'User-Agent: PostmanRuntime/7.19.0' \
                   --header 'cache-control: no-cache' \
-                  --data '{\n	"dna":["ACATACCA","GTGTTACA","GGCAAgAG","ATGGGCTC","GTGCCGTA","AAGAGGAG","ATGATGGG","TCCTTCCT"]\n}'
+                  --data '{"dna":["ACATACCA","GTGTTACA","GGCAAgAG","ATGGGCTC","GTGCCGTA","AAGAGGAG","ATGATGGG","TCCTTCCT"]}'
   
         
 Para consultar los registros actuales:  http://35.198.62.59:23450/api/stats
