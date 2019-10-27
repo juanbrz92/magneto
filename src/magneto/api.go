@@ -52,10 +52,10 @@ func checkMutant(w http.ResponseWriter, r *http.Request) {
 		if result {
 			sequence.RESULT = "Es mutante"
 			respondWithJSON(w, http.StatusOK, sequence)
-		} else {
-			sequence.RESULT = "No es mutante"
-			respondWithJSON(w, http.StatusForbidden, sequence)
+			return
 		}
+		sequence.RESULT = "No es mutante"
+		respondWithJSON(w, http.StatusForbidden, sequence)
 		return
 	}
 	statement, err := db.Prepare("insert into sequence (dna, result) values(?,?);")
