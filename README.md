@@ -25,6 +25,14 @@ Dependencias:
     go get github.com/gorilla/mux
 
     go get github.com/go-sql-driver/mysql
+    
+Configuraciones extras:
+
+Modificar el archivo /src/magneto/api.go las lineas, definir el usuario, contraseña de la base de datos y puerto desde donde la api escucha las peticiones.
+
+    var host = "http://localhost"
+    var port = "12345"
+    var connectionString = "usuario:contraseña@tcp(127.0.0.1:3306)/magneto?charset=utf8&parseTime=True&loc=Local"
 
 Para ejecutar ir a src/magneto y ejecutar cualquiera de los siguientes comandos
     
