@@ -46,30 +46,20 @@ Para agregar/checkear secuencias de adn:  http://35.198.62.59:23450/api/mutant
         Password: 1234
 
       Ejemplo:
-                  curl -X POST \
-                  http://35.198.62.59:23450/api/mutant \
-                  -H 'Accept: */*' \
-                  -H 'Accept-Encoding: gzip, deflate' \
-                  -H 'Authorization: Basic bWVsaToxMjM0' \
-                  -H 'Cache-Control: no-cache' \
-                  -H 'Connection: keep-alive' \
-                  -H 'Content-Length: 144' \
-                  -H 'Content-Type: application/json' \
-                  -H 'Host: localhost:12345' \
-                  -H 'Postman-Token: 84b65496-7230-4974-9876-e82f1ab529e8,d30076d7-6cf1-4965-9eaa-e5ea36b08bde' \
-                  -H 'User-Agent: PostmanRuntime/7.19.0' \
-                  -H 'cache-control: no-cache' \
-                  -d '{
-                    "dna":["TCGAGCGTT",
-                        "GTCATAGGG",
-                        "CTTATATTT",
-                        "GAAACTCAT",
-                        "CCTACACAG",
-                        "ACGCTAGGG",
-                        "AGTCTCATC",
-                        "TATTTAGAC",
-                        "GGTTAAATG"]
-                }'
+                  curl --request POST \
+                  --url http://35.198.62.59:23450/api/mutant \
+                  --header 'Accept: */*' \
+                  --header 'Accept-Encoding: gzip, deflate' \
+                  --header 'Authorization: Basic bWVsaToxMjM0' \
+                  --header 'Cache-Control: no-cache' \
+                  --header 'Connection: keep-alive' \
+                  --header 'Content-Length: 100' \
+                  --header 'Content-Type: application/json' \
+                  --header 'Host: 35.198.62.59:23450' \
+                  --header 'Postman-Token: 8a43c7d2-dbb7-45ef-b438-0453df138d79,59ea29e3-1c48-428d-9071-f2dc7bdefaf6' \
+                  --header 'User-Agent: PostmanRuntime/7.19.0' \
+                  --header 'cache-control: no-cache' \
+                  --data '{\n	"dna":["ACATACCA","GTGTTACA","GGCAAgAG","ATGGGCTC","GTGCCGTA","AAGAGGAG","ATGATGGG","TCCTTCCT"]\n}'
   
         
 Para consultar los registros actuales:  http://35.198.62.59:23450/api/stats
