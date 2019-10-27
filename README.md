@@ -33,7 +33,9 @@ Para ejecutar ir a src/magneto y ejecutar cualquiera de los siguientes comandos
 Para realizar test ir a src/magneto
 
     go test -v -cover
+
 Del cual se obtiene
+
     ...
     ...
     PASS
