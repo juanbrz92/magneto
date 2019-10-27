@@ -44,7 +44,7 @@ Para agregar/checkear secuencias de adn:
 
       Ejemplo:
                   curl -X POST \
-                  http://localhost:12345/api/mutant \
+                  http://35.198.62.59:23450/api/mutant \
                   -H 'Accept: */*' \
                   -H 'Accept-Encoding: gzip, deflate' \
                   -H 'Authorization: Basic bWVsaToxMjM0' \
