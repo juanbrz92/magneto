@@ -34,9 +34,8 @@ Para ejecutar ir a src/magneto y ejecutar cualquiera de los siguientes comandos
 Accesso a la api (En GCP): 
 
 
-Para agregar/checkear secuencias de adn:
+Para agregar/checkear secuencias de adn:  http://35.198.62.59:23450/api/mutant
 
-     http://35.198.62.59:23450/api/mutant
   
       Basic Auth:
         Username: meli
@@ -69,9 +68,7 @@ Para agregar/checkear secuencias de adn:
                 }'
   
         
-Para consultar los registros actuales:
-
-    http://35.198.62.59:23450/api/stats
+Para consultar los registros actuales:  http://35.198.62.59:23450/api/stats
     
     Basic Auth:
         Username: meli
