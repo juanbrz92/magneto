@@ -33,6 +33,12 @@ Para ejecutar ir a src/magneto y ejecutar cualquiera de los siguientes comandos
 Para realizar test ir a src/magneto
 
     go test -v -cover
+Del cual se obtiene
+    ...
+    ...
+    PASS
+    coverage: 87.4% of statements
+    ok      magneto 0.610s
     
 
 Accesso a la api (En GCP): 
