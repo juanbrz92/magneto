@@ -1,5 +1,7 @@
 # magneto
 
+Se detalla a continuación los rquisitos para ejecutar el programa localmente. Por otro lado mas abajo se detalla el acceso a la api directamente.
+
 Requisitos:
 
     Tener instalado go, ver en: https://golang.org/doc/install
@@ -43,7 +45,7 @@ Del cual se obtiene
     ok      magneto 0.610s
     
 
-Accesso a la api (En GCP): 
+Acceso a la api (En GCP): 
 
 
 Para agregar/checkear secuencias de adn:  http://35.198.62.59:23450/api/mutant
