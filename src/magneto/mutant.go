@@ -52,7 +52,7 @@ func isMutant(dna []string) (bool, error) {
 					}
 				}
 				if coins {
-					if count > 0 && i <= positions[count-1][2] && j <= positions[count-1][3] && i != positions[count-1][0] && j != positions[count-1][1] && direction == "O" {
+					if count > 0 && ((i == positions[count-1][0]+1 && j == positions[count-1][1]+1) || (i == positions[count-1][0]+2 && j == positions[count-1][1]+2) || (i == positions[count-1][0]+3 && j == positions[count-1][1]+3)) && direction == "O" {
 						continue
 					}
 					direction = "O"
@@ -104,7 +104,7 @@ func isMutant(dna []string) (bool, error) {
 					}
 				}
 				if coins {
-					if count > 0 && i <= positions[count-1][2] && j <= positions[count-1][3] && i != positions[count-1][0] && j != positions[count-1][1] && direction == "%" {
+					if count > 0 && ((i == positions[count-1][0]+1 && j+3 == positions[count-1][1]-1) || (i == positions[count-1][0]+2 && j+3 == positions[count-1][1]-2) || (i == positions[count-1][0]+3 && j+3 == positions[count-1][1]-3)) && direction == "%" {
 						continue
 					}
 					direction = "%"
