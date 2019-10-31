@@ -1,5 +1,7 @@
 # magneto
 
+Se detalla a continuación los rquisitos para ejecutar el programa localmente. Por otro lado mas abajo se detalla el acceso a la api directamente.
+
 Requisitos:
 
     Tener instalado go, ver en: https://golang.org/doc/install
@@ -23,6 +25,14 @@ Dependencias:
     go get github.com/gorilla/mux
 
     go get github.com/go-sql-driver/mysql
+    
+Configuraciones extras:
+
+Modificar el archivo /src/magneto/api.go las lineas, definir el usuario, contraseña de la base de datos y puerto desde donde la api escucha las peticiones.
+
+    var host = "http://localhost"
+    var port = "12345"
+    var connectionString = "usuario:contraseña@tcp(127.0.0.1:3306)/magneto?charset=utf8&parseTime=True&loc=Local"
 
 Para ejecutar ir a src/magneto y ejecutar cualquiera de los siguientes comandos
     
@@ -43,7 +53,7 @@ Del cual se obtiene
     ok      magneto 0.610s
     
 
-Accesso a la api (En GCP): 
+Acceso a la api (En GCP): 
 
 
 Para agregar/checkear secuencias de adn:  http://35.198.62.59:23450/api/mutant
