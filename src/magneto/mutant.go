@@ -10,8 +10,15 @@ func isMutant(dna []string) (bool, error) {
 		}
 	}
 	count := 0
-	positions := [2][4]int{}
-	direction := ""
+	positions := [2][3]int{}
+	/*Direcciones:
+	0: Horizontal
+	1: Oblicua
+	2: Vertical
+	3: Contra-Oblicua
+	4: Final-Vertical
+	5: Final-Horizontal
+	*/
 	for i := 0; i <= (N - 1); i++ {
 		for j := 0; j <= (N-4) && i <= (N-4); j++ {
 			if dna[i][j] == dna[i][j+3] { // Elementos pivotantes Horizontal
@@ -23,20 +30,19 @@ func isMutant(dna []string) (bool, error) {
 					}
 				}
 				if coins {
-					if count > 0 && i <= positions[count-1][2] && j <= positions[count-1][3] && i == positions[count-1][0] && direction == "H" {
-						continue
+					if count > 0 && i == positions[count-1][0] && (j == positions[count-1][1]+1 || j == positions[count-1][1]+2 || j == positions[count-1][1]+3) && positions[count-1][2] == 0 {
+						goto oblicuos
 					}
-					direction = "H"
 					positions[count][0] = i
 					positions[count][1] = j
-					positions[count][2] = i
-					positions[count][3] = j + 3
+					positions[count][2] = 0
 					count++
 					if count > 1 {
 						return true, nil
 					}
 				}
 			}
+		oblicuos:
 			if dna[i][j] == dna[i+3][j+3] { // Elementos pivotantes Oblicuos
 				coins := true
 				for k := (i + 1); k <= (i + 2); {
@@ -52,20 +58,19 @@ func isMutant(dna []string) (bool, error) {
 					}
 				}
 				if coins {
-					if count > 0 && ((i == positions[count-1][0]+1 && j == positions[count-1][1]+1) || (i == positions[count-1][0]+2 && j == positions[count-1][1]+2) || (i == positions[count-1][0]+3 && j == positions[count-1][1]+3)) && direction == "O" {
-						continue
+					if count > 0 && ((i == positions[count-1][0]+1 && j == positions[count-1][1]+1) || (i == positions[count-1][0]+2 && j == positions[count-1][1]+2) || (i == positions[count-1][0]+3 && j == positions[count-1][1]+3)) && positions[count-1][2] == 1 {
+						goto verticales
 					}
-					direction = "O"
 					positions[count][0] = i
 					positions[count][1] = j
-					positions[count][2] = i + 3
-					positions[count][3] = j + 3
+					positions[count][2] = 1
 					count++
 					if count > 1 {
 						return true, nil
 					}
 				}
 			}
+		verticales:
 			if dna[i][j] == dna[i+3][j] { // Elementos pivotantes Verticales
 				coins := true
 				for k := (i + 1); k <= (i + 2); k++ {
@@ -75,20 +80,19 @@ func isMutant(dna []string) (bool, error) {
 					}
 				}
 				if coins {
-					if count > 0 && i <= positions[count-1][2] && j <= positions[count-1][3] && j == positions[count-1][1] && direction == "V" {
-						continue
+					if count > 0 && j == positions[count-1][1] && (i == positions[count-1][0]+1 || i == positions[count-1][0]+2 || i == positions[count-1][0]+3) && positions[count-1][2] == 2 {
+						goto semiOblicuos
 					}
-					direction = "V"
 					positions[count][0] = i
 					positions[count][1] = j
-					positions[count][2] = i + 3
-					positions[count][3] = j
+					positions[count][2] = 2
 					count++
 					if count > 1 {
 						return true, nil
 					}
 				}
 			}
+		semiOblicuos:
 			if dna[i][j+3] == dna[i+3][j] { // Elementos semi-pivotantes Oblicuos
 				coins := true
 				for k := (i + 1); k <= (i + 2); {
@@ -104,14 +108,12 @@ func isMutant(dna []string) (bool, error) {
 					}
 				}
 				if coins {
-					if count > 0 && ((i == positions[count-1][0]+1 && j+3 == positions[count-1][1]-1) || (i == positions[count-1][0]+2 && j+3 == positions[count-1][1]-2) || (i == positions[count-1][0]+3 && j+3 == positions[count-1][1]-3)) && direction == "%" {
+					if count > 0 && ((i == positions[count-1][0]+1 && j+3 == positions[count-1][1]-1) || (i == positions[count-1][0]+2 && j+3 == positions[count-1][1]-2) || (i == positions[count-1][0]+3 && j+3 == positions[count-1][1]-3)) && positions[count-1][2] == 3 {
 						continue
 					}
-					direction = "%"
 					positions[count][0] = i
 					positions[count][1] = j + 3
-					positions[count][2] = i + 3
-					positions[count][3] = j
+					positions[count][2] = 3
 					count++
 					if count > 1 {
 						return true, nil
@@ -129,14 +131,12 @@ func isMutant(dna []string) (bool, error) {
 					}
 				}
 				if coins {
-					if count > 0 && i <= positions[count-1][2] && j <= positions[count-1][3] && j == positions[count-1][1] && direction == "v" {
+					if count > 0 && j == positions[count-1][1] && (i == positions[count-1][0]+1 || i == positions[count-1][0]+2 || i == positions[count-1][0]+3) && positions[count-1][2] == 4 {
 						continue
 					}
-					direction = "v"
 					positions[count][0] = i
 					positions[count][1] = j
-					positions[count][2] = i + 3
-					positions[count][3] = j
+					positions[count][2] = 4
 					count++
 					if count > 1 {
 						return true, nil
@@ -154,14 +154,12 @@ func isMutant(dna []string) (bool, error) {
 					}
 				}
 				if coins {
-					if count > 0 && i <= positions[count-1][2] && j <= positions[count-1][3] && i == positions[count-1][0] && direction == "h" {
+					if count > 0 && i == positions[count-1][0] && (j == positions[count-1][1]+1 || j == positions[count-1][1]+2 || j == positions[count-1][1]+3) && positions[count-1][2] == 5 {
 						continue
 					}
-					direction = "h"
 					positions[count][0] = i
 					positions[count][1] = j
-					positions[count][2] = i
-					positions[count][3] = j + 3
+					positions[count][2] = 5
 					count++
 					if count > 1 {
 						return true, nil

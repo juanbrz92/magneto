@@ -13,7 +13,7 @@ import (
 
 var host = "http://localhost"
 var port = "12345"
-var connectionString = "usuario:contraseña@tcp(127.0.0.1:3306)/magneto?charset=utf8&parseTime=True&loc=Local"
+var connectionString = "juanbrz92:36554061jjhjjh@tcp(127.0.0.1:3306)/magneto?charset=utf8&parseTime=True&loc=Local"
 
 func main() {
 	var router *mux.Router
