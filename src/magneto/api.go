@@ -12,15 +12,15 @@ import (
 )
 
 var host = "http://localhost"
-var port = "12345"
-var connectionString = "juanbrz92:36554061jjhjjh@tcp(127.0.0.1:3306)/magneto?charset=utf8&parseTime=True&loc=Local"
+var port = "puerto"
+var connectionString = "usuario:contraseña@tcp(127.0.0.1:3306)/magneto?charset=utf8&parseTime=True&loc=Local"
 
 func main() {
 	var router *mux.Router
 	router = mux.NewRouter().StrictSlash(true)
 	router.Handle("/api/mutant", basicauthmiddleware.BasicAuthMiddleware(http.HandlerFunc(checkMutant))).Methods("POST")
 	router.Handle("/api/stats", basicauthmiddleware.BasicAuthMiddleware(http.HandlerFunc(getStats))).Methods("GET")
-	fmt.Println("Listening on port :12345")
+	fmt.Println("Listening on port :puerto")
 	http.ListenAndServe(":"+port, router)
 }
 
